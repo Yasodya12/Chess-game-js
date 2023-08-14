@@ -21,7 +21,7 @@
     moveAnimationBgId=0;
     jumpAniNum=0;
     jumpAniNumber=0
-
+    margintopBoy=672;
 
     function idelAnimation(){
         idelNum=idelNum+1;
@@ -42,8 +42,14 @@
 
     function jumpAnimation(){
         jumpAniNum=jumpAniNum+1;
-        if (jumpAniNum){
-
+        if (jumpAniNum <= 6){
+            margintopBoy=margintopBoy-20
+            mario.style.marginTop=margintopBoy+"px"
+        }
+        if (jumpAniNum >= 7){
+            margintopBoy=margintopBoy+20
+            mario.style.marginTop=margintopBoy+"px"
+            console.log("top eka"+margintopBoy);
         }
         if (jumpAniNum==13){
             clearInterval(jumpAniNumber);

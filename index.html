@@ -42,26 +42,33 @@
 
     function jumpAnimation(){
         jumpAniNum=jumpAniNum+1;
+
         if (jumpAniNum <= 6){
-            margintopBoy=margintopBoy-20
+            margintopBoy=margintopBoy-22
             mario.style.marginTop=margintopBoy+"px"
+            console.log("down eka"+margintopBoy);
         }
-        if (jumpAniNum >= 7){
-            margintopBoy=margintopBoy+20
+        if (jumpAniNum > 7){
+            margintopBoy=margintopBoy+22
             mario.style.marginTop=margintopBoy+"px"
             console.log("top eka"+margintopBoy);
         }
         if (jumpAniNum==13){
             clearInterval(jumpAniNumber);
             clearInterval(runAnimationNumber);
-            jumpAniNum=1;
+            jumpAniNum=0;
 
             runImgnNum=0;
             runAnimationStart();
 
         }
        // mario.src = "img/png/Jump ("+runImgnNum+").png";
-       mario.src = "img/png/Jump ("+jumpAniNum+").png";
+        if (jumpAniNum==0){
+            mario.src = "img/png/Jump ("+1+").png";
+        }else{
+            mario.src = "img/png/Jump ("+jumpAniNum+").png";
+        }
+
 
     }
 

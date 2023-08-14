@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/normalize.css">
 </head>
-<body class="background " onload="animationStart();" >
+<body class="background " onload="animationStart(); createBarriersBoxes()" >
 <div class="background" id="background">
     <img src="img/png/Dead%20(1).png" class="mario" id="mario">
 </div>
@@ -22,6 +22,7 @@
     jumpAniNum=0;
     jumpAniNumber=0
     margintopBoy=672;
+    boxMarginLept=800
 
     function idelAnimation(){
         idelNum=idelNum+1;
@@ -70,6 +71,24 @@
         }
 
 
+    }
+
+    function createBarriersBoxes(){
+
+        for (var i=0; i<=10; i++){
+            var  barrier = document.createElement("div");
+            barrier.className="barrier";
+            document.getElementById("background").appendChild(barrier);
+
+
+        }
+        if (i<5){
+            boxMarginLept=boxMarginLept+100;
+        }
+        if (i>=5){
+            boxMarginLept=boxMarginLept+140;
+        }
+        barrier.style.marginLeft=boxMarginLept+"px"
     }
 
     function animationStart(){
@@ -130,7 +149,7 @@
     document.addEventListener('keydown', function(event) {
         // Check if the up arrow key was pressed
         if (event.key === 'ArrowUp' || event.keyCode === 38) {
-
+            clearInterval(jumpAniNumber);
             jumpAnimationStart();
 
         }

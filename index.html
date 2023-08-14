@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body class="background " onload="animationStart();" >
+<div class="background" id="background">
+    <img src="img/png/Dead%20(1).png" class="mario" id="mario">
+</div>
+
+<script>
+    var mario  = document.getElementById("mario");
+    idelNum=0;
+    animationNum=0;
+    runImgnNum=0;
+    runAnimationNumber=0;
+    bgPosition=0;
+    moveAnimationBgId=0;
+    jumpAniNum=0;
+    jumpAniNumber=0
+
+
+    function idelAnimation(){
+        idelNum=idelNum+1;
+
+        if (idelNum==11){
+            idelNum=1;
+        }
+        mario.src = "img/png/Idle ("+idelNum+").png";
+    }
+
+    function runAnimation(){
+        runImgnNum=runImgnNum+1;
+        if(runImgnNum==9){
+            runImgnNum=1;
+        }
+        mario.src = "img/png/Run ("+runImgnNum+").png";
+    }
+
+    function jumpAnimation(){
+        jumpAniNum=jumpAniNum+1;
+        if (jumpAniNum){
+
+        }
+        if (jumpAniNum==13){
+            clearInterval(jumpAniNumber);
+            clearInterval(runAnimationNumber);
+            jumpAniNum=1;
+
+            runImgnNum=0;
+            runAnimationStart();
+
+        }
+       // mario.src = "img/png/Jump ("+runImgnNum+").png";
+       mario.src = "img/png/Jump ("+jumpAniNum+").png";
+
+    }
+
+    function animationStart(){
+         animationNum = setInterval(idelAnimation,100);
+    }
+    function runAnimationStart(){
+         runAnimationNumber = setInterval(runAnimation,100);
+        clearInterval(animationNum);
+    }
+    function jumpAnimationStart(){
+
+        runImgnNum=0;
+        // mario.style.top=
+        clearInterval(runAnimationNumber);
+        clearInterval(animationNum);
+        jumpAniNumber = setInterval(jumpAnimation,100);
+
+    }
+
+
+
+    document.addEventListener('keydown', function(event) {
+        // Check if the left arrow key was pressed
+        if (event.key === 'ArrowRight' || event.keyCode === 39) {
+            // Your function or code to handle the left arrow key event
+            // For example, you can call a function here:
+            if (runAnimationNumber==0){
+                runAnimationStart();
+            }
+
+
+
+            if(moveAnimationBgId==0){
+                moveAnimationBgId = setInterval(moveBackground,100);
+
+
+            }
+        }
+
+    });
+
+
+    document.addEventListener('keydown', function(event) {
+        // Check if the left arrow key was pressed
+        if (event.key === 'ArrowLeft' || event.keyCode === 37) {
+            // Your function or code to handle the left arrow key event
+            // For example, you can call a function here:
+           clearInterval(runAnimationNumber);
+           clearInterval(moveAnimationBgId);
+            // clearInterval(jumpAniNumber);
+            animationNum = setInterval(idelAnimation,100);
+           runAnimationNumber=0;
+            moveAnimationBgId=0
+            // jumpAniNum=0;
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        // Check if the up arrow key was pressed
+        if (event.key === 'ArrowUp' || event.keyCode === 38) {
+
+            jumpAnimationStart();
+
+        }
+    });
+
+
+
+    myImage= document.getElementById("background");
+    function moveBackground(){
+        bgPosition=bgPosition-20;
+        document.getElementById("background").style.backgroundPositionX=bgPosition+"px"
+
+
+    }
+</script>
+</body>
+</html>

@@ -22,7 +22,7 @@
     jumpAniNum=0;
     jumpAniNumber=0
     margintopBoy=672;
-    boxMarginLept=800
+    boxMarginLept=1900
 
     function idelAnimation(){
         idelNum=idelNum+1;
@@ -47,12 +47,12 @@
         if (jumpAniNum <= 6){
             margintopBoy=margintopBoy-22
             mario.style.marginTop=margintopBoy+"px"
-            console.log("down eka"+margintopBoy);
+
         }
         if (jumpAniNum > 7){
             margintopBoy=margintopBoy+22
             mario.style.marginTop=margintopBoy+"px"
-            console.log("top eka"+margintopBoy);
+
         }
         if (jumpAniNum==13){
             clearInterval(jumpAniNumber);
@@ -80,15 +80,17 @@
             barrier.className="barrier";
             document.getElementById("background").appendChild(barrier);
 
+            if (i<5){
 
+                boxMarginLept=boxMarginLept+700;
+            }
+            if (i>=5){
+
+                boxMarginLept=boxMarginLept+500;
+            }
+            barrier.style.marginLeft=boxMarginLept+"px"
         }
-        if (i<5){
-            boxMarginLept=boxMarginLept+100;
-        }
-        if (i>=5){
-            boxMarginLept=boxMarginLept+140;
-        }
-        barrier.style.marginLeft=boxMarginLept+"px"
+
     }
 
     function animationStart(){

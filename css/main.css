@@ -8,6 +8,8 @@
   background-size: cover;
   background-position: bottom;
   background-repeat: repeat-x;
+  position: absolute;
+  overflow-x:hidden ;
 
 
 }

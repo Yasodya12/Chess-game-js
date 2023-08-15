@@ -22,7 +22,8 @@
     jumpAniNum=0;
     jumpAniNumber=0
     margintopBoy=672;
-    boxMarginLept=1900
+    boxMarginLept=500;
+    barrierAnimationId=0;
 
     function idelAnimation(){
         idelNum=idelNum+1;
@@ -79,7 +80,7 @@
             var  barrier = document.createElement("div");
             barrier.className="barrier";
             document.getElementById("background").appendChild(barrier);
-
+            barrier.id="barrier"+i;
             if (i<5){
 
                 boxMarginLept=boxMarginLept+700;
@@ -91,6 +92,17 @@
             barrier.style.marginLeft=boxMarginLept+"px"
         }
 
+    }
+    function barrierAnimation(){
+        for (var j=0; j<=10; j++){
+
+            var barrier=document.getElementById("barrier"+j);
+            let currentMarginLeft = getComputedStyle(barrier).marginLeft;
+            let newMarginLeft =parseInt(currentMarginLeft)-25;
+            barrier.style.marginLeft=newMarginLeft+"px";
+
+
+        }
     }
 
     function animationStart(){
@@ -126,6 +138,11 @@
             if(moveAnimationBgId==0){
                 moveAnimationBgId = setInterval(moveBackground,100);
 
+
+            }
+            if(barrierAnimationId==0){
+
+                let barrierAnimation1 = setInterval(barrierAnimation,100);
 
             }
         }

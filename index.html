@@ -21,7 +21,7 @@
     moveAnimationBgId=0;
     jumpAniNum=0;
     jumpAniNumber=0
-    margintopBoy=672;
+    margintopBoy=580;
     boxMarginLept=500;
     barrierAnimationId=0;
 
@@ -46,12 +46,12 @@
         jumpAniNum=jumpAniNum+1;
 
         if (jumpAniNum <= 6){
-            margintopBoy=margintopBoy-22
+            margintopBoy=margintopBoy-30
             mario.style.marginTop=margintopBoy+"px"
 
         }
         if (jumpAniNum > 7){
-            margintopBoy=margintopBoy+22
+            margintopBoy=margintopBoy+30
             mario.style.marginTop=margintopBoy+"px"
 
         }
@@ -101,6 +101,13 @@
             let newMarginLeft =parseInt(currentMarginLeft)-25;
             barrier.style.marginLeft=newMarginLeft+"px";
 
+            if(newMarginLeft >=0   && newMarginLeft<=250){
+
+
+                if(margintopBoy<300){
+
+                }
+            }
 
         }
     }
@@ -118,7 +125,7 @@
         // mario.style.top=
         clearInterval(runAnimationNumber);
         clearInterval(animationNum);
-        jumpAniNumber = setInterval(jumpAnimation,100);
+        jumpAniNumber = setInterval(jumpAnimation,150);
 
     }
 
@@ -183,6 +190,8 @@
 
 
     }
+
+
 </script>
 </body>
 </html>

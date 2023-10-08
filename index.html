@@ -9,6 +9,7 @@
 <body class="background " onload="animationStart(); createBarriersBoxes()" >
 <div class="background" id="background">
     <img src="img/png/Dead%20(1).png" class="mario" id="mario">
+    <div class="=score" id="score"> 0 </div>
 </div>
 
 <script>
@@ -25,6 +26,8 @@
     boxMarginLept=500;
     barrierAnimationId=0;
 
+
+    var score=0;
     function idelAnimation(){
         idelNum=idelNum+1;
 
@@ -80,6 +83,7 @@
             var  barrier = document.createElement("div");
             barrier.className="barrier";
             document.getElementById("background").appendChild(barrier);
+            barrier.style.marginLeft=boxMarginLept+"px"
             barrier.id="barrier"+i;
             if (i<5){
 
@@ -100,17 +104,35 @@
             let currentMarginLeft = getComputedStyle(barrier).marginLeft;
             let newMarginLeft =parseInt(currentMarginLeft)-25;
             barrier.style.marginLeft=newMarginLeft+"px";
+            if(newMarginLeft >=-10   && newMarginLeft<=250){
 
-            if(newMarginLeft >=0   && newMarginLeft<=250){
 
-
-                if(margintopBoy<300){
-
+                if(margintopBoy>500){
+                    clearInterval(barrierAnimationId);
+                    clearInterval(runAnimationNumber);
+                    runAnimationNumber=-1;
+                    clearInterval(jumpAniNum);
+                    jumpAniNum=-1;
+                    clearInterval(moveAnimationBgId);
+                    moveAnimationBgId=-1;
+                    deaAnimationNum=setInterval(deathAnimation,100);
+                    console.log('game OVer');
                 }
             }
 
         }
     }
+    deadImgNum=0;
+    deaAnimationNum=0;
+    function deathAnimation(){
+        deadImgNum=deadImgNum+1;
+        if (deadImgNum==11){
+            deadImgNum=10;
+        }
+        mario.src="img/png/Dead ("+deadImgNum+").png";
+
+    }
+
 
     function animationStart(){
          animationNum = setInterval(idelAnimation,100);
@@ -132,10 +154,9 @@
 
 
     document.addEventListener('keydown', function(event) {
-        // Check if the left arrow key was pressed
+       
         if (event.key === 'ArrowRight' || event.keyCode === 39) {
-            // Your function or code to handle the left arrow key event
-            // For example, you can call a function here:
+
             if (runAnimationNumber==0){
                 runAnimationStart();
             }
@@ -158,22 +179,21 @@
 
 
     document.addEventListener('keydown', function(event) {
-        // Check if the left arrow key was pressed
+
         if (event.key === 'ArrowLeft' || event.keyCode === 37) {
-            // Your function or code to handle the left arrow key event
-            // For example, you can call a function here:
+
            clearInterval(runAnimationNumber);
            clearInterval(moveAnimationBgId);
-            // clearInterval(jumpAniNumber);
+            clearInterval(jumpAniNumber);
             animationNum = setInterval(idelAnimation,100);
            runAnimationNumber=0;
             moveAnimationBgId=0
-            // jumpAniNum=0;
+            jumpAniNum=0;
         }
     });
 
     document.addEventListener('keydown', function(event) {
-        // Check if the up arrow key was pressed
+
         if (event.key === 'ArrowUp' || event.keyCode === 38) {
             clearInterval(jumpAniNumber);
             jumpAnimationStart();
@@ -185,8 +205,11 @@
 
     myImage= document.getElementById("background");
     function moveBackground(){
+
         bgPosition=bgPosition-20;
         document.getElementById("background").style.backgroundPositionX=bgPosition+"px"
+        score=score+1;
+        document.getElementById("score").innerText=score;
 
 
     }

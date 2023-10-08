@@ -10,6 +10,15 @@
 <div class="background" id="background">
     <img src="img/png/Dead%20(1).png" class="mario" id="mario">
     <div class="=score" id="score"> 0 </div>
+    <div class="end" id="end">
+        <img class="marioLogo" src="img/5f569b8b4322de00046d577b.png"></img>
+        <div style="color: black; margin: 2vh" class="gameOver">Game over</div>
+        <div style="color: black; margin: 2vh" class="yourScore">Your score</div>
+        <div style="color: black; margin: 2vh"  id="endScore">0</div>
+        <button class="btn" onclick="reload()">Try Again</button>
+        <img class="img" src="img/6099bcfa2c8ed2287085e07b6105685e.png">
+        <img  class="trap" src="img/PotatoMineHD.png" >
+    </div>
 </div>
 
 <script>
@@ -128,6 +137,10 @@
         deadImgNum=deadImgNum+1;
         if (deadImgNum==11){
             deadImgNum=10;
+            document.getElementById("end").style.visibility="visible";
+            document.getElementById("endScore").innerText=score;
+            console.log("giya")
+
         }
         mario.src="img/png/Dead ("+deadImgNum+").png";
 
@@ -213,7 +226,9 @@
 
 
     }
-
+    function reload(){
+        location.reload()
+    }
 
 </script>
 </body>

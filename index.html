@@ -1,235 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/normalize.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess-game</title>
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
-<body class="background " onload="animationStart(); createBarriersBoxes()" >
-<div class="background" id="background">
-    <img src="img/png/Dead%20(1).png" class="mario" id="mario">
-    <div class="=score" id="score"> 0 </div>
-    <div class="end" id="end">
-        <img class="marioLogo" src="img/5f569b8b4322de00046d577b.png"></img>
-        <div style="color: black; margin: 2vh" class="gameOver">Game over</div>
-        <div style="color: black; margin: 2vh" class="yourScore">Your score</div>
-        <div style="color: black; margin: 2vh"  id="endScore">0</div>
-        <button class="btn" onclick="reload()">Try Again</button>
-        <img class="img" src="img/6099bcfa2c8ed2287085e07b6105685e.png">
-        <img  class="trap" src="img/PotatoMineHD.png" >
+
+<body>
+
+    <div class="container">
+      <h1>Chess Hero</h1>
+
+
+      <ul>
+        <div  class="div" id="row8">
+          <li class="box" id="b801"> Brook</li>
+          <li class="box" id="b802">Bknight</li>
+          <li class="box" id="b803">Bbishop</li>
+          <li class="box" id="b804">Bqueen</li>
+          <li class="box" id="b805">Bking</li>
+          <li class="box" id="b806">Bbishop</li>
+          <li class="box" id="b807">Bknight</li>
+          <li class="box" id="b808">Brook</li>
+
+        </div>
+
+        <div  class="div" id="row7">
+          <li class="box" id="b701">Bpawn</li>
+          <li class="box" id="b702">Bpawn</li>
+          <li class="box" id="b703">Bpawn</li>
+          <li class="box" id="b704">Bpawn</li>
+          <li class="box" id="b705">Bpawn</li>
+          <li class="box" id="b706">Bpawn</li>
+          <li class="box" id="b707">Bpawn</li>
+          <li class="box" id="b708">Bpawn</li>
+
+        </div>
+
+        <div  class="div" id="row6">
+          <li class="box" id="b601"></li>
+          <li class="box" id="b602"></li>
+          <li class="box" id="b603"></li>
+          <li class="box" id="b604"></li>
+          <li class="box" id="b605"></li>
+          <li class="box" id="b606"></li>
+          <li class="box" id="b607"></li>
+          <li class="box" id="b608"></li>
+        </div>
+
+        <div  class="div" id="row5">
+          <li class="box" id="b501"></li>
+          <li class="box" id="b502"></li>
+          <li class="box" id="b503"></li>
+          <li class="box" id="b504"></li>
+          <li class="box" id="b505"></li>
+          <li class="box" id="b506"></li>
+          <li class="box" id="b507"></li>
+          <li class="box" id="b508"></li>
+        </div>
+
+        <div  class="div" id="row4">
+          <li class="box" id="b401"></li>
+          <li class="box" id="b402"></li>
+          <li class="box" id="b403"></li>
+          <li class="box" id="b404"></li>
+          <li class="box" id="b405"></li>
+          <li class="box" id="b406"></li>
+          <li class="box" id="b407"></li>
+          <li class="box" id="b408"></li>
+        </div>
+
+        <div  class="div" id="row3">
+          <li class="box" id="b301"></li>
+          <li class="box" id="b302"></li>
+          <li class="box" id="b303"></li>
+          <li class="box" id="b304"></li>
+          <li class="box" id="b305"></li>
+          <li class="box" id="b306"></li>
+          <li class="box" id="b307"></li>
+          <li class="box" id="b308"></li>
+
+        </div>
+
+        <div  class="div" id="row2">
+          <li class="box" id="b201">Wpawn</li>
+          <li class="box" id="b202">Wpawn</li>
+          <li class="box" id="b203">Wpawn</li>
+          <li class="box" id="b204">Wpawn</li>
+          <li class="box" id="b205">Wpawn</li>
+          <li class="box" id="b206">Wpawn</li>
+          <li class="box" id="b207">Wpawn</li>
+          <li class="box" id="b208">Wpawn</li>
+        </div>
+
+        <div  class="div" id="row1">
+          <li class="box" id="b101">Wrook</li>
+          <li class="box" id="b102">Wknight</li>
+          <li class="box" id="b103">Wbishop</li>
+          <li class="box" id="b104">Wqueen</li>
+          <li class="box" id="b105">Wking</li>
+          <li class="box" id="b106">Wbishop</li>
+          <li class="box" id="b107">Wknight</li>
+          <li class="box" id="b108">Wrook</li>
+        </div>
+      </ul>
+
+      <h2 id="tog">White's Turn </h2>
+      <h2 id="reset-btn">Reset </h2>
     </div>
-</div>
-
-<script>
-    var mario  = document.getElementById("mario");
-    idelNum=0;
-    animationNum=0;
-    runImgnNum=0;
-    runAnimationNumber=0;
-    bgPosition=0;
-    moveAnimationBgId=0;
-    jumpAniNum=0;
-    jumpAniNumber=0
-    margintopBoy=580;
-    boxMarginLept=500;
-    barrierAnimationId=0;
-
-
-    var score=0;
-    function idelAnimation(){
-        idelNum=idelNum+1;
-
-        if (idelNum==11){
-            idelNum=1;
-        }
-        mario.src = "img/png/Idle ("+idelNum+").png";
-    }
-
-    function runAnimation(){
-        runImgnNum=runImgnNum+1;
-        if(runImgnNum==9){
-            runImgnNum=1;
-        }
-        mario.src = "img/png/Run ("+runImgnNum+").png";
-    }
-
-    function jumpAnimation(){
-        jumpAniNum=jumpAniNum+1;
-
-        if (jumpAniNum <= 6){
-            margintopBoy=margintopBoy-30
-            mario.style.marginTop=margintopBoy+"px"
-
-        }
-        if (jumpAniNum > 7){
-            margintopBoy=margintopBoy+30
-            mario.style.marginTop=margintopBoy+"px"
-
-        }
-        if (jumpAniNum==13){
-            clearInterval(jumpAniNumber);
-            clearInterval(runAnimationNumber);
-            jumpAniNum=0;
-
-            runImgnNum=0;
-            runAnimationStart();
-
-        }
-       // mario.src = "img/png/Jump ("+runImgnNum+").png";
-        if (jumpAniNum==0){
-            mario.src = "img/png/Jump ("+1+").png";
-        }else{
-            mario.src = "img/png/Jump ("+jumpAniNum+").png";
-        }
-
-
-    }
-
-    function createBarriersBoxes(){
-
-        for (var i=0; i<=10; i++){
-            var  barrier = document.createElement("div");
-            barrier.className="barrier";
-            document.getElementById("background").appendChild(barrier);
-            barrier.style.marginLeft=boxMarginLept+"px"
-            barrier.id="barrier"+i;
-            if (i<5){
-
-                boxMarginLept=boxMarginLept+700;
-            }
-            if (i>=5){
-
-                boxMarginLept=boxMarginLept+500;
-            }
-            barrier.style.marginLeft=boxMarginLept+"px"
-        }
-
-    }
-    function barrierAnimation(){
-        for (var j=0; j<=10; j++){
-
-            var barrier=document.getElementById("barrier"+j);
-            let currentMarginLeft = getComputedStyle(barrier).marginLeft;
-            let newMarginLeft =parseInt(currentMarginLeft)-25;
-            barrier.style.marginLeft=newMarginLeft+"px";
-            if(newMarginLeft >=-10   && newMarginLeft<=250){
-
-
-                if(margintopBoy>500){
-                    clearInterval(barrierAnimationId);
-                    clearInterval(runAnimationNumber);
-                    runAnimationNumber=-1;
-                    clearInterval(jumpAniNum);
-                    jumpAniNum=-1;
-                    clearInterval(moveAnimationBgId);
-                    moveAnimationBgId=-1;
-                    deaAnimationNum=setInterval(deathAnimation,100);
-                    console.log('game OVer');
-                }
-            }
-
-        }
-    }
-    deadImgNum=0;
-    deaAnimationNum=0;
-    function deathAnimation(){
-        deadImgNum=deadImgNum+1;
-        if (deadImgNum==11){
-            deadImgNum=10;
-            document.getElementById("end").style.visibility="visible";
-            document.getElementById("endScore").innerText=score;
-            console.log("giya")
-
-        }
-        mario.src="img/png/Dead ("+deadImgNum+").png";
-
-    }
-
-
-    function animationStart(){
-         animationNum = setInterval(idelAnimation,100);
-    }
-    function runAnimationStart(){
-         runAnimationNumber = setInterval(runAnimation,100);
-        clearInterval(animationNum);
-    }
-    function jumpAnimationStart(){
-
-        runImgnNum=0;
-        // mario.style.top=
-        clearInterval(runAnimationNumber);
-        clearInterval(animationNum);
-        jumpAniNumber = setInterval(jumpAnimation,150);
-
-    }
 
 
 
-    document.addEventListener('keydown', function(event) {
-       
-        if (event.key === 'ArrowRight' || event.keyCode === 39) {
+  <script src="js/app.js"></script>
 
-            if (runAnimationNumber==0){
-                runAnimationStart();
-            }
-
-
-
-            if(moveAnimationBgId==0){
-                moveAnimationBgId = setInterval(moveBackground,100);
-
-
-            }
-            if(barrierAnimationId==0){
-
-                let barrierAnimation1 = setInterval(barrierAnimation,100);
-
-            }
-        }
-
-    });
-
-
-    document.addEventListener('keydown', function(event) {
-
-        if (event.key === 'ArrowLeft' || event.keyCode === 37) {
-
-           clearInterval(runAnimationNumber);
-           clearInterval(moveAnimationBgId);
-            clearInterval(jumpAniNumber);
-            animationNum = setInterval(idelAnimation,100);
-           runAnimationNumber=0;
-            moveAnimationBgId=0
-            jumpAniNum=0;
-        }
-    });
-
-    document.addEventListener('keydown', function(event) {
-
-        if (event.key === 'ArrowUp' || event.keyCode === 38) {
-            clearInterval(jumpAniNumber);
-            jumpAnimationStart();
-
-        }
-    });
-
-
-
-    myImage= document.getElementById("background");
-    function moveBackground(){
-
-        bgPosition=bgPosition-20;
-        document.getElementById("background").style.backgroundPositionX=bgPosition+"px"
-        score=score+1;
-        document.getElementById("score").innerText=score;
-
-
-    }
-    function reload(){
-        location.reload()
-    }
-
-</script>
 </body>
+
 </html>
